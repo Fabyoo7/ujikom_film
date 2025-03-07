@@ -50,36 +50,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        {{-- <div class="col-md-6 col-xl-5 grid-margin stretch-card ml-auto" style="">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p>Filter by Kategori</p>
-                                    <form method="GET" action="{{ route('film.index') }}">
-                                        <select class="form-control" name="id_kategori" id="putih"
-                                            id="exampleSelectGender">
-                                            <option value=""
-                                                {{ is_null(request()->get('id_kategori')) ? 'selected' : '' }}>
-                                                Tampilkan Semua Film</option>
-                                            @foreach ($kategori as $data)
-                                                <option value="{{ $data->id }}"
-                                                    {{ request()->get('id_kategori') == $data->id ? 'selected' : '' }}>
-                                                    {{ $data->nama_kategori }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <button type="submit" class="btn btn-primary mt-3">Search</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
-                    @if (session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                  
                         <div class="row">
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">

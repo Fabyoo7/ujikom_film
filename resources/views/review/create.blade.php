@@ -40,7 +40,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Add Data Film</h4>
                                 <p class="card-description"> Masukkan data Film yang ingin anda tambahkan </p>
-                                <form class="forms-sample" action="{{ route('film.store') }}" method="post"
+                                <form class="forms-sample" action="{{ route('review.store') }}" method="post"
                                     role="form" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group row">
@@ -86,26 +86,6 @@
                                             class="col-sm-3 col-form-label">Komen</label>
                                         <div class="col-sm-9">
                                             <textarea class="form-control" name="komen" id="putih" rows="4" required></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Poster</label>
-                                        <input type="file" name="poster" class="file-upload-default">
-                                        <div class="input-group col-sm-9">
-                                            <input type="text" class="form-control file-upload-info" disabled
-                                                placeholder="Upload Image">
-                                            <span class="input-group-append">
-                                                <button class="file-upload-browse btn btn-primary"
-                                                    type="button">Upload</button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Trailer
-                                            </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="putih" name="trailer"
-                                                placeholder="Trailer" required>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mr-2">Send</button>

@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Film;
 use App\Models\Review;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -15,40 +17,27 @@ class ReviewController extends Controller
     public function index(Request $request)
     {
         $film = Film::all();
-
-        // Ambil ID kategori dari request
-        $id_film = $request->get('id_film');
-
-        // Jika id_kategori ada dan tidak kosong, filter artikel berdasarkan kategori tersebut
-        if ($id_film) {
-            $review = Review::where('id_film', $id_film)->get();
-        } else {
-            // Jika tidak, ambil semua artikel
-            $review = Review::orderBy('created_at', 'desc')->get();
-
-        }
-
         $user = User::all();
 
-// Ambil ID kategori dari request
+        // Ambil ID film dari request
+        $id_film = $request->get('id_film');
         $id_user = $request->get('id_user');
 
-// Jika id_kategori ada dan tidak kosong, filter artikel berdasarkan kategori tersebut
-        if ($id_user) {
+        if ($id_film) {
+            $review = Review::where('id_film', $id_film)->get();
+        } elseif ($id_user) {
             $review = Review::where('id_user', $id_user)->get();
         } else {
-            // Jika tidak, ambil semua artikel
+            // Jika tidak, ambil semua film
             $review = Review::orderBy('created_at', 'desc')->get();
-
         }
 
-        // Menambahkan formatted_tanggal pada setiap artikel
+        // Menambahkan formatted_tanggal pada setiap review
         foreach ($review as $data) {
-            $data->formatted_tanggal = Carbon::parse($data->tanggal)->translatedFormat('l, d F Y');
+            $data->formatted_tanggal = Carbon::parse($data->created_at)->translatedFormat('l, d F Y');
         }
 
-        return view('review.index', compact('film', 'user', 'id_film'));
-
+        return view('review.index', compact('review', 'film', 'id_film', 'user', 'id_user'));
     }
 
     /**
@@ -62,6 +51,7 @@ class ReviewController extends Controller
         $user = User::all();
 
         return view('review.create', compact('film', 'user'));
+
     }
 
     /**
@@ -73,21 +63,21 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'rating' => 'required|string|max:255',
-            'komen'  => 'required',
+            'rating'   => 'required|integer|min:1|max:10',
+            'komen' => 'required|string',
+
         ]);
 
-        $review          = new Review;
-        $review->id_film = $request->id_film;
-        $review->id_user = $request->id_user;
-        $review->rating  = $request->rating;
-        $review->komen   = $request->komen;
+        $review           = new Review;
+        $review->id_film  = $request->id_film;
+        $review->id_user  = $request->id_user;
+        $review->rating   = $request->rating;
+        $review->komen = $request->komen;
 
-        $film->save();
-        toast('New entry has been saved', 'success');
+        $review->save();
+        toast('New review has been saved', 'success');
 
-        return redirect()->route('film.index');
-
+        return redirect()->route('review.index');
     }
 
     /**
@@ -101,7 +91,7 @@ class ReviewController extends Controller
         $film = Film::all();
         $user = User::all();
 
-        return view('review.show', compact('film', 'user'));
+        return view('review.show', compact('review', 'film', 'user'));
 
     }
 
@@ -114,10 +104,7 @@ class ReviewController extends Controller
     public function edit(Review $review)
     {
         $film = Film::all();
-        $user = User::all();
-
-        return view('review.edit', compact('film', 'user'));
-
+        return view('review.edit', compact('film', 'review'));
     }
 
     /**
@@ -130,20 +117,21 @@ class ReviewController extends Controller
     public function update(Request $request, Review $review)
     {
         $validated = $request->validate([
-            'rating' => 'required|string|max:255',
-            'komen'  => 'required',
+            'rating'   => 'required|integer|min:1|max:10',
+            'komen' => 'required|string',
+
         ]);
 
-        $review          = new Review;
-        $review->id_film = $request->id_film;
-        $review->id_user = $request->id_user;
-        $review->rating  = $request->rating;
-        $review->komen   = $request->komen;
+        
+        $review->id_film  = $request->id_film;
+        $review->id_user  = $request->id_user;
+        $review->rating   = $request->rating;
+        $review->komen = $request->komen;
 
-        $film->save();
-        toast('New entry has been saved', 'success');
+        $review->save();
+        toast('New review has been saved', 'success');
 
-        return redirect()->route('film.index');
+        return redirect()->route('review.index');
 
     }
 
@@ -156,9 +144,7 @@ class ReviewController extends Controller
     public function destroy(Review $review)
     {
         $review->delete();
-
-        toast('Record removed successfully', 'success');
+        toast('Review removed successfully', 'success');
         return redirect()->route('review.index');
-
     }
 }

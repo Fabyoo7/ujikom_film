@@ -4,7 +4,7 @@
 				<div class="col-12">
 					<div class="header__content">
 						<!-- header logo -->
-						<a href="index.html" class="header__logo">
+						<a href="/" class="header__logo">
 							<img src="{{ asset('frontend/assets/img/logo11.png')}}" alt=""style="width: 340px; height: auto; margin-left: -65px;">
 						</a>
 						<!-- end header logo -->
@@ -28,6 +28,7 @@
 							</li>
 
 							<!-- dropdown -->
+							 
 							<li class="header__nav-item">
 								<a class="header__nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages <i class="ti ti-chevron-down"></i></a>
 
@@ -46,6 +47,7 @@
 
 							<!-- end dropdown -->
 						</ul>
+						
 						<!-- end header nav -->
 
 						<!-- header auth -->
@@ -73,10 +75,8 @@
 								</a>
 
 								<ul class="dropdown-menu dropdown-menu-end header__dropdown-menu header__dropdown-menu--user">
-									<li><a href="profile.html"><i class="ti ti-ghost"></i>Profile</a></li>
-									<li><a href="profile.html"><i class="ti ti-stereo-glasses"></i>Subscription</a></li>
+								<li><a href="{{route ('profile')}}"><i class="ti ti-ghost"></i>Profile</a></li>
 									<li><a href="profile.html"><i class="ti ti-bookmark"></i>Favorites</a></li>
-									<li><a href="profile.html"><i class="ti ti-settings"></i>Settings</a></li>
 									<li><a href="#"><i class="ti ti-logout"></i>Logout</a></li>
 								</ul>
 							</div>

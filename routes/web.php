@@ -39,6 +39,10 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::get('/', [FrontController::class, 'index']);
+Route::get('profile', [FrontController::class, 'profile'])->name('profile');
+Route::post('/detail/{id}/review', [FrontController::class, 'storeReview'])->name('review.store');
+
+
 Route::get('/detail/{id}', [FrontController::class, 'show']);
 
 
@@ -50,7 +54,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 // Hanya untuk user biasa
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user', function () {
-        return view('welcome');
+        return view('profile');
     })->name('user.dashboard');
 });
 

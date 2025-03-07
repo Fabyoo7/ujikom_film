@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Film;
 use App\Models\Genre;
 use App\Models\Kategori;
+use App\Models\Review;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -17,40 +18,28 @@ class FilmController extends Controller
     public function index(Request $request)
     {
         $kategori = Kategori::all();
+        $genre    = Genre::all();
 
-// Ambil ID kategori dari request
+        // Ambil ID kategori dan genre dari request
         $id_kategori = $request->get('id_kategori');
+        $id_genre    = $request->get('id_genre');
 
-// Jika id_kategori ada dan tidak kosong, filter artikel berdasarkan kategori tersebut
+        // Filter film berdasarkan kategori atau genre jika ada
         if ($id_kategori) {
             $film = Film::where('id_kategori', $id_kategori)->get();
+        } elseif ($id_genre) {
+            $film = Film::where('id_genre', $id_genre)->get();
         } else {
-            // Jika tidak, ambil semua fl$film
+            // Jika tidak, ambil semua film
             $film = Film::orderBy('created_at', 'desc')->get();
-
         }
 
-// Menambahkan formatted_tanggal pada setiap film
+        // Menambahkan formatted_tanggal pada setiap film
         foreach ($film as $data) {
             $data->formatted_tanggal = Carbon::parse($data->tanggal)->translatedFormat('l, d F Y');
         }
 
-        $genre = Genre::all();
-
-// Ambil ID kategori dari request
-        $id_genre = $request->get('id_genre');
-
-// Jika id_kategori ada dan tidak kosong, filter artikel berdasarkan kategori tersebut
-        if ($id_genre) {
-            $film = Film::where('id_genre', $id_genre)->get();
-        } else {
-            // Jika tidak, ambil semua fl$film
-            $film = Film::orderBy('created_at', 'desc')->get();
-
-        }
-
         return view('film.index', compact('film', 'kategori', 'id_kategori', 'genre', 'id_genre'));
-
     }
 
     /**
@@ -117,7 +106,7 @@ class FilmController extends Controller
      */
     public function show(Film $film)
     {
-        
+
         $kategori = Kategori::all();
         $genre    = Genre::all();
 
@@ -166,7 +155,7 @@ class FilmController extends Controller
         $film->sipnosis    = $request->sipnosis;
         $film->tahun_rilis = $request->tahun_rilis;
         $film->waktu       = $request->waktu;
-        
+
         if ($request->hasFile('poster')) {
             $img  = $request->file('poster');
             $name = rand(1000, 9999) . $img->getClientOriginalName();

@@ -55,6 +55,7 @@
 
 						<div class="splide__track">
 							<ul class="splide__list">
+								
 								@foreach($film as $item)
 								<li class="splide__slide">
 									<div class="item item--hero">
@@ -127,6 +128,7 @@
 				<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab" tabindex="0">
 					<div class="row">
 						<!-- item -->
+						 
 						@foreach($film as $item)
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="item">
@@ -148,6 +150,7 @@
 							</div>
 						</div>
 						@endforeach
+					
 						<!-- end item -->
 					</div>
 				</div>
