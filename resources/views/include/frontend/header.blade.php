@@ -19,12 +19,11 @@
 
 							<!-- dropdown -->
 							<li class="header__nav-item">
-								<a class="header__nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalog  </a>
-							</li>
+								<a href="{{ route('catalog') }}" class="header__nav-link">Catalog</a>
 							<!-- end dropdown -->
 
 							<li class="header__nav-item">
-								<a href="pricing.html" class="header__nav-link">Pricing plan</a>
+								<a href="{{ route('about') }}" class="header__nav-link">About us</a>
 							</li>
 
 							<!-- dropdown -->

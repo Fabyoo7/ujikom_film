@@ -5,10 +5,10 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\FrontController;
-
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+
 
 
 
@@ -40,6 +40,8 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::get('/', [FrontController::class, 'index']);
 Route::get('profile', [FrontController::class, 'profile'])->name('profile');
+Route::get('/about', [FrontController::class, 'about'])->name('about');
+Route::get('/catalog', [FrontController::class, 'catalog'])->name('catalog');
 Route::post('/detail/{id}/review', [FrontController::class, 'storeReview'])->name('review.store');
 
 

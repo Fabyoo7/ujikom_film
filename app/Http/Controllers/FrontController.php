@@ -26,6 +26,19 @@ class FrontController extends Controller
         return view('profile', compact( 'film'));
     }
 
+     public function about()
+    {
+        return view('about');
+    }
+
+     public function catalog()
+    {
+        $film = Film::all();
+        return view('catalog' ,compact( 'film'));
+    }
+
+
+
     public function storeReview(Request $request, $id)
     {
         $request->validate([

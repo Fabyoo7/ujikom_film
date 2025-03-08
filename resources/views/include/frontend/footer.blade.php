@@ -10,7 +10,7 @@
 						<span class="footer__copyright">© SINEMATCH, 2022—2025 <br> Create by <a href="https://themeforest.net/user/dmitryvolkov/portfolio" target="_blank">Fabio Naufal</a></span>
 
 						<nav class="footer__nav">
-							<a href="about.html">About Us</a>
+							<a href="{{ route('about') }}">About Us</a>
 							<a href="contacts.html">Contacts</a>
 							<a href="privacy.html">Privacy policy</a>
 						</nav>
