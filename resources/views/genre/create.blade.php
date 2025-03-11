@@ -58,7 +58,7 @@
                                     </div>
 
                                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                    <a href="{{ url('genre') }}" class="btn btn-dark">Cancel</a>
+                                    <a href="{{ url('admin/genre') }}" class="btn btn-dark">Cancel</a>
                                 </form>
                             </div>
                         </div>

@@ -89,7 +89,7 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mr-2">Send</button>
-                                    <a href="{{ url('review') }}" class="btn btn-dark">Cancel</a>
+                                    <a href="{{ url('admin/review') }}" class="btn btn-dark">Cancel</a>
                                 </form>
                             </div>
                         </div>

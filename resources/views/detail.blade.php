@@ -60,7 +60,7 @@
                             <div class="col-12 col-md-7 col-lg-8 col-xl-6 col-xxl-7">
                                 <div class="item__content">
                                     <ul class="item__meta">
-                                        <li><span>Aktor:</span> <a href="">{{$film->aktor}}</a></li>
+                                        <li><span>Aktor:        <a href="">{{$film->aktor}}</a></span></li>
                                         <li><span>Kategori:</span> <a href="">{{ $film->kategori->nama_kategori}}</a> </li>
                                         <li><span>Genre:</span> <a href="">{{ $film->genre->nama_genre}}</a>
                                         <li><span>Tahun rilis:</span>{{$film->tahun_rilis}}</li>

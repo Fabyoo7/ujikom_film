@@ -54,8 +54,8 @@
 			<div class="row">
 				<!-- section title -->
 				<div class="col-12">
-					<h2 class="section__title"><b>HotFlix</b> – Best Place for Movies</h2>
-					<p class="section__text">Welcome to <b>HotFlix</b> movie site, the ultimate destination for all film enthusiasts. Immerse yourself in a world of captivating stories, stunning visuals, and unforgettable performances. Explore our extensive library of movies, spanning across genres, eras, and cultures.</p>
+					<h2 class="section__title"><b>SineMatch</b> – Best Place for Movies</h2>
+					<p class="section__text">Welcome to <b>SineMatch</b> movie site, the ultimate destination for all film enthusiasts. Immerse yourself in a world of captivating stories, stunning visuals, and unforgettable performances. Explore our extensive library of movies, spanning across genres, eras, and cultures.</p>
 					<p class="section__text">Indulge in the joy of cinema with our curated collections, featuring handpicked movies grouped by themes, directors, or actors. Dive into the world of cinematic magic and let yourself be transported to new realms of imagination and emotion.</p>
 				</div>
 				<!-- end section title -->
@@ -158,8 +158,8 @@
 				<div class="col-12 col-md-6 col-lg-4">
 					<div class="how">
 						<span class="how__number">03</span>
-						<h3 class="how__title">Enjoy HotFlix</h3>
-						<p class="how__text">Immerse yourself in the world of HotFlix, where unlimited movie streaming awaits. With our vast collection of movies there's something for everyone.</p>
+						<h3 class="how__title">Enjoy SineMatch</h3>
+						<p class="how__text">Immerse yourself in the world of SineMatch, where unlimited movie streaming awaits. With our vast collection of movies there's something for everyone.</p>
 					</div>
 				</div>
 				<!-- ebd how box -->
