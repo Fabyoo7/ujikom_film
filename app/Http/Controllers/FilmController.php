@@ -39,7 +39,9 @@ class FilmController extends Controller
             $data->formatted_tanggal = Carbon::parse($data->tanggal)->translatedFormat('l, d F Y');
         }
 
-        return view('film.index', compact('film', 'kategori', 'id_kategori', 'genre', 'id_genre'));
+        $film = Film::paginate(10);
+
+        return view('film.index', compact('film', 'kategori', 'id_kategori', 'genre', 'id_genre' ));
     }
 
     /**

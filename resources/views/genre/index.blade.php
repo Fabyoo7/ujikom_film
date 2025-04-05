@@ -1,152 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendors/css/vendor.bundle.base.css')}}">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendors/jvectormap/jquery-jvectormap.css')}}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendors/flag-icon-css/css/flag-icon.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendors/owl-carousel-2/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendors/owl-carousel-2/owl.theme.default.min.css')}}">
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css')}}">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.png')}}">
-  </head>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="{{ asset('backend/assets/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{ asset('backend/assets/css/slimselect.css')}}">
+	<link rel="stylesheet" href="{{ asset('backend/assets/css/admin.css')}}">
+
+	<!-- Icon font -->
+	<link rel="stylesheet" href="{{ asset('backend/assets/webfont/tabler-icons.min.css')}}">
+
+	<!-- Favicons -->
+	<link rel="icon" type="image/png" href="{{ asset('backend/assets/icon/favicon-32x32.png')}}" sizes="32x32">
+	<link rel="apple-touch-icon" href="{{ asset('backend/assets/icon/favicon-32x32.png')}}">
+
+	<meta name="description" content="Online Movies, TV Shows & Cinema HTML Template">
+	<meta name="keywords" content="">
+	<meta name="author" content="Dmitry Volkov">
+	<title>SINEMATCH</title>
+</head>
 
 <body>
+	<!-- header -->
+	<header class="header">
+		<div class="header__content">
+			<!-- header logo -->
+			<a href="index.html" class="header__logo">
+				<img src="img/logo.svg" alt="">
+			</a>
+			<!-- end header logo -->
 
-     @include('sweetalert::alert')
-    
+			<!-- header menu btn -->
+			<button class="header__btn" type="button">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+			<!-- end header menu btn -->
+		</div>
+	</header>
+	<!-- end header -->
 
-    <div class="container-scroller">
-        {{-- SIDEBAR --}}
-        @include('include.backend.sidebar')
+    @include('sweetalert::alert')
 
-        {{-- NAVBAR --}}
-        <div class="container-fluid page-body-wrapper">
-            @include('include.backend.navbar')
+	<!-- sidebar -->
+	@include('include.backend.sidebar')
+	<!-- end sidebar -->
 
-            {{-- TABEL --}}
+	<!-- main content -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<!-- main title -->
+				<div class="col-12">
+					<div class="main__title">
+						<h2>GENRE</h2>
 
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-md-6 col-xl-12 grid-margin stretch-card ml-auto" style="">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p style="font-size: 30px; text-align: center; margin-top: 2%"> Halaman Genre
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @if (session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                    <div class="row">
-                        <div class="col-lg-12 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h4 class="card-title">Genre</h4>
-                                        <a href="{{ route('genre.create') }}" class="btn btn-primary">+ Add Data</a>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th><b>
-                                                            <h5>No</h5>
-                                                        </b></th>
-                                                    <th><b>
-                                                            <h5>Nama Genre</h5>
-                                                        </b></th>
-                                                    <th><b>
-                                                            <h5>Action</h5>
-                                                        </b></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @php $no=1; @endphp
-                                                @foreach ($genre as $data)
-                                                    <tr class="odd gradeX">
-                                                        <td>{{ $no++ }}</td>
-                                                        <td>{{ $data->nama_genre }}</td>
-                                                        <form action="{{ route('genre.destroy', $data->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <td>
-                                                                <a href="{{ route('genre.edit', $data->id) }}"
-                                                                    class="btn  btn-success">Edit</a>
-                                                                <a href="{{ route('genre.show', $data->id) }}"
-                                                                    class="btn  btn-warning">Detail</a>
-                                                                <button class="btn  btn-danger" type="submit"
-                                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                                                    Delete
-                                                                </button>
-                                                            </td>
-                                                        </form>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+						
 
+						<div class="main__title-wrap">
+							<a href="{{ route('genre.create') }}" class="main__title-link main__title-link--wrap">Add Genre</a>
+						</div>
+					</div>
+				</div>
+				<!-- end main title -->
 
+				<!-- items -->
+				<div class="col-12">
+					<div class="catalog catalog--1">
+						<table class="catalog__table">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>GENRE</th>
+                                    <th>ACTIONS</th>
+								</tr>
+							</thead>
+                             @php $no=1; @endphp
+                            @foreach ($genre as $data)
+							<tbody>
+								<tr>
+									<td>
+										<div class="catalog__text">{{ $no++ }}</div>
+									</td>
+									<td>
+										<div class="catalog__text">{{ $data->nama_genre }}</div>
+									</td>
+									<td>
+                                         <form action="{{ route('genre.destroy', $data->id) }}"
+                                             method="POST">
+                                             @csrf
+                                             @method('DELETE')
+										<div class="catalog__btns">
+											<a href="#" class="catalog__btn catalog__btn--view">
+												<i class="ti ti-eye"></i>
+											</a>
+											<a href="{{ route('genre.edit', $data->id) }}" class="catalog__btn catalog__btn--edit">
+												<i class="ti ti-edit"></i>
+											</a>
+											<button type="submit" data-bs-toggle="modal" class="catalog__btn catalog__btn--delete" data-bs-target="#modal-delete">
+												<i class="ti ti-trash"></i>
+											</button>
+										</div>
+									</td>
+                                     </form>
+								</tr>
+								 @endforeach
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- end items -->
+			</div>
+		</div>
+	</main>
+	<!-- end main content -->
 
-      <!-- content-wrapper ends -->
-           
-          <!-- footer -->
-        
+	<!-- status modal -->
+	<div class="modal fade" id="modal-status" tabindex="-1" aria-labelledby="modal-status" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal__content">
+					<form action="#" class="modal__form">
+						<h4 class="modal__title">Status change</h4>
 
-          <!-- partial -->
+						<p class="modal__text">Are you sure about immediately change status?</p>
 
-        </div>
-        <!-- main-panel ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="{{ asset('backend/assets/vendors/js/vendor.bundle.base.js')}}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="{{ asset('backend/assets/vendors/chart.js/Chart.min.js')}}"></script>
-    <script src="{{ asset('backend/assets/vendors/progressbar.js/progressbar.min.js')}}"></script>
-    <script src="{{ asset('backend/assets/vendors/jvectormap/jquery-jvectormap.min.js')}}"></script>
-    <script src="{{ asset('backend/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
-    <script src="{{ asset('backend/assets/vendors/owl-carousel-2/owl.carousel.min.js')}}"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{ asset('backend/assets/js/off-canvas.js')}}"></script>
-    <script src="{{ asset('backend/assets/js/hoverable-collapse.js')}}"></script>
-    <script src="{{ asset('backend/assets/js/misc.js')}}"></script>
-    <script src="{{ asset('backend/assets/js/settings.js')}}"></script>
-    <script src="{{ asset('backend/assets/js/todolist.js')}}"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="{{ asset('backend/assets/js/dashboard.js')}}"></script>
-    <!-- End custom js for this page -->
-  </body>
+						<div class="modal__btns">
+							<button class="modal__btn modal__btn--apply" type="button"><span>Apply</span></button>
+							<button class="modal__btn modal__btn--dismiss" type="button" data-bs-dismiss="modal" aria-label="Close"><span>Dismiss</span></button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end status modal -->
+
+	<!-- delete modal -->
+	<div class="modal fade" id="modal-delete" tabindex="-1" aria-labelledby="modal-delete" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal__content">
+					<form action="#" class="modal__form">
+						<h4 class="modal__title">Item delete</h4>
+
+						<p class="modal__text">Are you sure to permanently delete this item?</p>
+
+						<div class="modal__btns">
+							<button class="modal__btn modal__btn--apply" type="button"><span>Delete</span></button>
+							<button class="modal__btn modal__btn--dismiss" type="button" data-bs-dismiss="modal" aria-label="Close"><span>Dismiss</span></button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end delete modal -->
+
+	<!-- JS -->
+	<script src="{{ asset('backend/assets/js/bootstrap.bundle.min.js')}}"></script>
+	<script src="{{ asset('backend/assets/js/slimselect.min.js')}}"></script>
+	<script src="{{ asset('backend/assets/js/smooth-scrollbar.js')}}"></script>
+	<script src="{{ asset('backend/assets/js/admin.js')}}"></script>
+</body>
 </html>

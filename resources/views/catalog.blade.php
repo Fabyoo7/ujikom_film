@@ -23,7 +23,7 @@
     <meta name="description" content="Online Movies, TV Shows & Cinema HTML Template">
     <meta name="keywords" content="">
     <meta name="author" content="Dmitry Volkov">
-    <title>IYO FILMS</title>
+    <title>SINEMATCH</title>
 </head>
 
 

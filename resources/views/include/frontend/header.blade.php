@@ -5,46 +5,26 @@
 					<div class="header__content">
 						<!-- header logo -->
 						<a href="/" class="header__logo">
-							<img src="{{ asset('frontend/assets/img/logo11.png')}}" alt=""style="width: 340px; height: auto; margin-left: -65px;">
+							<img src="{{ asset('frontend/assets/img/logo111.png')}}" alt=""style="width: 220px; height: auto; margin-left: 15px;">
 						</a>
 						<!-- end header logo -->
 
 						<!-- header nav -->
 						<ul class="header__nav">
-							<!-- dropdown -->
+							 <!-- Home -->
 							<li class="header__nav-item">
-								<a class="header__nav-link" href="/" >Home </a>
-							</li>
-							<!-- end dropdown -->
-
-							<!-- dropdown -->
-							<li class="header__nav-item">
-								<a href="{{ route('catalog') }}" class="header__nav-link">Catalog</a>
-							<!-- end dropdown -->
-
-							<li class="header__nav-item">
-								<a href="{{ route('about') }}" class="header__nav-link">About us</a>
+								<a href="{{ Auth::check() ? route('user.home') : '/' }}" class="header__nav-link" >Home</a>
 							</li>
 
-							<!-- dropdown -->
-							 
+							<!-- Catalog -->
 							<li class="header__nav-item">
-								<a class="header__nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages <i class="ti ti-chevron-down"></i></a>
-
-								<ul class="dropdown-menu header__dropdown-menu">
-									<li><a href="login">login</a></li>
-									<li><a href="register">register</a></li>
-									<li><a href="{{ route('logout') }}"onclick="event.preventDefault(); document.getElementById('logout-form').submit();">logout</a></li>
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                   					   @csrf
-                     				 </form>
-								</ul>
+								<a href="{{ Auth::check() ? route('user.catalog') : route('catalog') }}" class="header__nav-link">Catalog</a>
 							</li>
-							<!-- end dropdown -->
 
-							<!-- dropdown -->
-
-							<!-- end dropdown -->
+							<!-- About Us -->
+							<li class="header__nav-item">
+								<a href="{{ Auth::check() ? route('user.about') : route('about') }}" class="header__nav-link">About us</a>
+							</li>
 						</ul>
 						
 						<!-- end header nav -->
@@ -68,16 +48,19 @@
 
 							<!-- dropdown -->
 							<div class="header__profile">
-								<a class="header__sign-in header__sign-in--user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="ti ti-user"></i>
-									<span>Profile</span>
-								</a>
-
-								<ul class="dropdown-menu dropdown-menu-end header__dropdown-menu header__dropdown-menu--user">
-								<li><a href="{{route ('profile')}}"><i class="ti ti-ghost"></i>Profile</a></li>
-									<li><a href="profile.html"><i class="ti ti-bookmark"></i>Favorites</a></li>
-									<li><a href="#"><i class="ti ti-logout"></i>Logout</a></li>
-								</ul>
+								@guest
+									<!-- Jika belum login, tampilkan tombol LOGIN -->
+									<a class="header__sign-in header__sign-in--user" href="{{ route('login') }}" role="button">
+										<i class="ti ti-user"></i>
+										<span>LOGIN</span>
+									</a>
+								@else
+									<!-- Jika sudah login, ubah menjadi link ke halaman profil -->
+									<a class="header__sign-in header__sign-in--user" href="profile" role="button">
+										<i class="ti ti-user"></i>
+										<span>Profile</span>
+									</a>
+								@endguest
 							</div>
 							<!-- end dropdown -->
 						</div>

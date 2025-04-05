@@ -58,25 +58,30 @@
 								
 								@foreach($film as $item)
 								<li class="splide__slide">
-									<div class="item item--hero">
-										<div class="item__cover">
-								
-											<img src="{{ asset('images/film/' . $item->poster)}}" alt="">
-											<a href="{{ url('detail', $item -> id ) }}" class="item__play">
-												<i class="ti ti-player-play-filled"></i>
-											</a>
-											<span class="item__rate item__rate--green">8.4</span>
-											<button class="item__favorite" type="button"><i class="ti ti-bookmark"></i></button>
+										<div class="item item--hero">
+											<div class="item__cover">
+												<img src="{{ asset('images/film/' . $item->poster) }}" alt="">
+												
+												<!-- Link ke detail film, berubah berdasarkan status login -->
+												<a href="{{ Auth::check() ? url('user/detail', $item->id) : url('detail', $item->id) }}" class="item__play">
+													<i class="ti ti-player-play-filled"></i>
+												</a>
+
+												<span class="item__rate item__rate--green">8.4</span>
+												<button class="item__favorite" type="button"><i class="ti ti-bookmark"></i></button>
+											</div>
+
+											<div class="item__content">
+												<h3 class="item__title">
+													<a href="{{ Auth::check() ? url('user/detail', $item->id) : url('detail', $item->id) }}">{{ $item->judul }}</a>
+												</h3>
+												<span class="item__category">
+													<a href="#">{{ $item->kategori->nama_kategori }}</a>
+													<a href="#">{{ $item->genre->nama_genre }}</a>
+												</span>
+											</div>
 										</div>
-										<div class="item__content">
-											<h3 class="item__title"> <a href="{{ url('detail', $item -> id ) }}">{{ $item->judul }}</a></h3>
-											<span class="item__category">
-												<a href="#">{{ $item->kategori->nama_kategori}}</a>
-												<a href="#">{{ $item->genre->nama_genre}}</a>
-											</span>
-										</div>
-									</div>
-								</li>
+									</li>
 								@endforeach
 							</ul>
 						</div>
